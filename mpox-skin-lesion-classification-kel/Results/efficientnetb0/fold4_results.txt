@@ -1,0 +1,17 @@
+EfficientNet-B0 Fold 4
+
+Data test: 81
+
+Accuracy : 0.8148
+Precision: 0.8331
+Recall   : 0.8452
+F1-score : 0.8183
+ROC-AUC  : 0.9794
+
+Confusion matrix:
+[[9, 0, 0, 0, 0, 0],
+ [0, 11, 0, 0, 0, 2],
+ [1, 0, 14, 0, 0, 0],
+ [0, 0, 0, 9, 0, 0],
+ [0, 0, 1, 1, 5, 1],
+ [5, 1, 1, 2, 0, 18]]
