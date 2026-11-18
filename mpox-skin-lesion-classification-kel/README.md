@@ -4,7 +4,7 @@
 
 Implementasi model EfficientNet-B0 dapat dilihat pada file berikut:
 
-[EfficientNetB0.py](Models/EfficientNetB0.py)
+[EfficientNetB0.py](Models/EFFICIENTNET-B0)
 
 
 EfficientNet-B0 digunakan untuk klasifikasi enam kelas lesi kulit, yaitu:
