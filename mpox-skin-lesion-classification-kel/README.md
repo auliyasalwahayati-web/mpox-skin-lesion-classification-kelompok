@@ -2,12 +2,7 @@
 
 ## EfficientNet-B0
 
-Implementasi model EfficientNet-B0 dapat dilihat pada file berikut:
-
-[EFFICIENTNET-B0](Models/EFFICIENTNET-B0)
-
-
-EfficientNet-B0 digunakan untuk klasifikasi enam kelas lesi kulit, yaitu:
+Model EfficientNet-B0 digunakan untuk melakukan klasifikasi enam kelas lesi kulit:
 
 - Chickenpox
 - Cowpox
@@ -16,17 +11,26 @@ EfficientNet-B0 digunakan untuk klasifikasi enam kelas lesi kulit, yaitu:
 - Measles
 - Monkeypox
 
-Model dilatih menggunakan 5-fold cross-validation dengan konfigurasi:
+Implementasi model dapat dilihat pada file:
 
-- Input image size: 224 × 224 piksel
+[efficientnet_b0.py](Models/efficientnet_b0.py)
+
+Konfigurasi model dapat dilihat pada:
+
+[config.py](config.py)
+
+### Konfigurasi Training
+
+- Ukuran input: 224 × 224 piksel
 - Batch size: 16
 - Maksimum epoch: 20
-- Optimizer: Adam
 - Learning rate: 0.0001
+- Optimizer: Adam
 - Early stopping patience: 5
 - Pretrained weight: ImageNet
+- Metode evaluasi: 5-fold cross-validation
 
-### Hasil Evaluasi 5-Fold
+### Hasil Evaluasi EfficientNet-B0
 
 | Metrik | Rata-rata ± Simpangan Baku |
 |---|---:|
@@ -36,6 +40,8 @@ Model dilatih menggunakan 5-fold cross-validation dengan konfigurasi:
 | F1-score | 78.99% ± 3.20% |
 | ROC-AUC | 0.9653 ± 0.0179 |
 
-Hasil tersebut diperoleh dari pengujian lima fold menggunakan file
-`test.py`. Model terbaik setiap fold disimpan berdasarkan nilai validation loss
-terendah.
+Hasil pengujian diperoleh dari lima fold menggunakan data test. Model terbaik pada setiap fold dipilih berdasarkan validation loss terendah.
+
+Hasil evaluasi lengkap dapat dilihat pada:
+
+[Results/efficientnetb0](Results/efficientnetb0)
