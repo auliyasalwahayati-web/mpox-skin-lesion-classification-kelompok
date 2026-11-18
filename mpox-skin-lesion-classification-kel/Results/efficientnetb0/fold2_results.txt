@@ -1,4 +1,4 @@
-EfficientNet-B0 - Fold 2
+EfficientNet-B0 Fold 2
 
 Data test: 82
 
