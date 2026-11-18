@@ -173,6 +173,7 @@ Isi tabel ini dari `Results/<model>/test_metrics.csv` setelah testing selesai.
 |-------|----------|-----------|--------|----------|---------|
 | `model1` (SimpleCNN) | - | - | - | - | - |
 | `model2` (SimpleCNNReg) | - | - | - | - | - |
+| `model3` (EfficientNet-B0) | 79.99% | 81.34% | 79.53% | 78.99% | 0.9653 |
 
 ## Anggota Kelompok 6
 
