@@ -180,4 +180,4 @@ Isi tabel ini dari `Results/<model>/test_metrics.csv` setelah testing selesai.
 | Nama | NIM | Peran |
 |------|-----|-------|
 | Auliya Salwa Hayati | - | - |
-| - | - | - |
+| Aprialdi A. Tanaem | 108102500024 | Model EfficientNet-B0 |
