@@ -2,6 +2,11 @@
 
 ## EfficientNet-B0
 
+Implementasi model EfficientNet-B0 dapat dilihat pada file berikut:
+
+[EfficientNetB0.py](Models/EfficientNetB0.py)
+
+
 EfficientNet-B0 digunakan untuk klasifikasi enam kelas lesi kulit, yaitu:
 
 - Chickenpox
