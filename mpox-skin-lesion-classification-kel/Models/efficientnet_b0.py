@@ -18,7 +18,7 @@ if torch.cuda.is_available():
 !git clone https://github.com/auliyasalwahayati-web/mpox-skin-lesion-classification-kelompok.git
 
 # Commented out IPython magic to ensure Python compatibility.
-# %cd /content/mpox-skin-lesion-classification-kelompok/mpox-skin-lesion-classification-kel
+%cd /content/mpox-skin-lesion-classification-kelompok/mpox-skin-lesion-classification-kel
 
 !ls
 
@@ -31,83 +31,81 @@ print("PyTorch:", torch.__version__)
 print("Torchvision:", torchvision.__version__)
 
 # Commented out IPython magic to ensure Python compatibility.
-# %%writefile Models/EfficientNetB0.py
-# 
-# import torch
-# import torch.nn as nn
-# from torchvision.models import efficientnet_b0
-# from torchvision.models import EfficientNet_B0_Weights
-# 
-# 
-# class EfficientNetB0(nn.Module):
-#     def __init__(self, output=6, pretrained=True):
-#         super().__init__()
-# 
-#         if pretrained:
-#             weights = EfficientNet_B0_Weights.DEFAULT
-#         else:
-#             weights = None
-# 
-#         self.model = efficientnet_b0(weights=weights)
-# 
-#         # Mengubah output bawaan ImageNet, yaitu 1000 kelas,
-#         # menjadi 6 kelas sesuai dataset Mpox.
-#         in_features = self.model.classifier[1].in_features
-#         self.model.classifier[1] = nn.Linear(in_features, output)
-# 
-#     def forward(self, x):
-#         x = self.model(x)
-# 
-#         # train.py menggunakan NLLLoss,
-#         # sehingga output diubah menjadi log-probabilitas.
-#         return torch.log_softmax(x, dim=1)
+%%writefile Models/EfficientNetB0.py
+
+import torch
+import torch.nn as nn
+from torchvision.models import efficientnet_b0
+from torchvision.models import EfficientNet_B0_Weights
+
+
+class EfficientNetB0(nn.Module):
+    def __init__(self, output=6, pretrained=True):
+        super().__init__()
+ 
+      if pretrained:
+         weights = EfficientNet_B0_Weights.DEFAULT
+      else:
+          weights = None
+ 
+      self.model = efficientnet_b0(weights=weights)
+
+     in_features = self.model.classifier[1].in_features
+     self.model.classifier[1] = nn.Linear(in_features, output)
+ 
+ def forward(self, x):
+        x = self.model(x)
+
+        # train.py menggunakan NLLLoss,
+        # sehingga output diubah menjadi log-probabilitas.
+        return torch.log_softmax(x, dim=1)
 
 # Commented out IPython magic to ensure Python compatibility.
-# %%writefile config.py
-# 
-# from Models.CNN import SimpleCNN
-# from Models.CNN2 import SimpleCNNReg
-# from Models.EfficientNetB0 import EfficientNetB0
-# 
-# 
-# CONFIGS = {
-#     "model1": {
-#         "model": SimpleCNN,
-#         "model_args": {
-#             "output": 6
-#         },
-#         "img_size": 100,
-#         "batch_size": 32,
-#         "epoch": 100,
-#         "lr": 0.001,
-#         "patience": None,
-#     },
-# 
-#     "model2": {
-#         "model": SimpleCNNReg,
-#         "model_args": {
-#             "output": 6
-#         },
-#         "img_size": 100,
-#         "batch_size": 16,
-#         "epoch": 20,
-#         "lr": 0.0001,
-#         "patience": 5,
-#     },
-# 
-#     "efficientnetb0": {
-#         "model": EfficientNetB0,
-#         "model_args": {
-#             "output": 6,
-#             "pretrained": True
-#         },
-#         "img_size": 224,
-#         "batch_size": 16,
-#         "epoch": 20,
-#         "lr": 0.0001,
-#         "patience": 5,
-#     },
-# }
+ %%writefile config.py
+
+from Models.CNN import SimpleCNN
+from Models.CNN2 import SimpleCNNReg
+from Models.EfficientNetB0 import EfficientNetB0
+ 
+ 
+CONFIGS = {
+    "model1": {
+        "model": SimpleCNN,
+        "model_args": {
+            "output": 6
+        },
+        "img_size": 100,
+        "batch_size": 32,
+        "epoch": 100,
+        "lr": 0.001,
+        "patience": None,
+    },
+
+    "model2": {
+        "model": SimpleCNNReg,
+        "model_args": {
+            "output": 6
+        },
+        "img_size": 100,
+        "batch_size": 16,
+        "epoch": 20,
+        "lr": 0.0001,
+        "patience": 5,
+    },
+
+    "efficientnetb0": {
+        "model": EfficientNetB0,
+        "model_args": {
+            "output": 6,
+            "pretrained": True
+        },
+        "img_size": 224,
+        "batch_size": 16,
+        "epoch": 20,
+        "lr": 0.0001,
+        "patience": 5,
+    },
+}
 
 from Models.EfficientNetB0 import EfficientNetB0
 import torch
@@ -187,4 +185,3 @@ display(
         filename="Results/efficientnetb0/confusion_matrix_all.png"
     )
 )
-
